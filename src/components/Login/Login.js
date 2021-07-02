@@ -14,7 +14,8 @@ const history = useHistory();
    const authenticate = () =>{
 
     
-
+    
+/*
      if(!username || !password ){
         alert("The credentials are wrong");
             return;
@@ -44,6 +45,8 @@ const history = useHistory();
                      break;   
             }
         });
+
+        */
     
     }
 
@@ -59,7 +62,7 @@ const history = useHistory();
         <div className="wrapper">
 
             <div className="form-signin" >
-                <h1 className="form-signin-heading">Welcome to ChatBox!</h1>
+                <h1 className="form-signin-heading">Bienvenidos al Supermercado Hemanos!</h1>
                 <h4 >Please login</h4>
                 <input type="text" id="username" className="form-control" name="username" onChange={onUserChange} placeholder="Username"  autoFocus=""  />
                 <br></br>
