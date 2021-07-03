@@ -1,19 +1,25 @@
 import './ProductList.css'
 import Product from './Product';
 import NavBar from '../NavBar/NavBar';
+import { useEffect, useState } from 'react';
 const ProductList = ({onSignOut,fullName})=>{
 
-    const products = [
-    {name:"Manzana",price:200},
-    {name:"Manzana",price:200},
-    {name:"Manzana",price:200},
-    {name:"Manzana",price:200},
-    {name:"Manzana",price:200},
-    {name:"Manzana",price:200},
-    {name:"Manzana",price:200},
-    {name:"Manzana",price:200},
-    {name:"Manzana",price:200},
-];
+    const [products,setProducts] = useState([]);
+
+    useEffect(()=>{
+
+        const fetchProducts = async ()=>{
+
+            const response = await fetch(process.env.REACT_APP_PROXY+'/products');
+            const result = await response.json();
+            setProducts(result);
+
+        }
+
+        fetchProducts();
+
+    },[])
+    
 
 
     return (
@@ -37,7 +43,7 @@ const ProductList = ({onSignOut,fullName})=>{
     </div>
     <div className="col-3">
     <select className="form-control mb-2 mr-sm-2" defaultValue="name">
-        <option  selected value="name">Nombre</option>
+        <option   value="name">Nombre</option>
         <option value="description">Descripcion</option>
 
     </select>
@@ -58,7 +64,7 @@ const ProductList = ({onSignOut,fullName})=>{
         {<div className="row">
            {products.map((product,i)=>{
                  
-               return <Product key={i}></Product>
+               return <Product product={product} key={i}></Product>
            })}
 
            </div>
