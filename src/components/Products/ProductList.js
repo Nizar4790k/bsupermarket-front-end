@@ -1,6 +1,7 @@
 import './ProductList.css'
 import Product from './Product';
-const ProductList = ()=>{
+import NavBar from '../NavBar/NavBar';
+const ProductList = ({onSignOut,fullName})=>{
 
     const products = [
     {name:"Manzana",price:200},
@@ -18,7 +19,7 @@ const ProductList = ()=>{
     return (
 
         <div>
-
+     <NavBar onSignOut={onSignOut} fullName={fullName} selectedTab={"ProductList"}></NavBar>
 
         <section style={{backgroundColor: "#eee"}}>
         
@@ -26,21 +27,29 @@ const ProductList = ()=>{
   
     <h4 className="mt-4 mb-5"><strong>Productos</strong></h4>
 
-    <div className="d-flex justify-content-around">
+ 
     
 
-    
-    <input className="form-control col-xs-2" type="text" placeholder="Search" aria-label="Search"></input>
-    <select className="form-control">
-
-        <option selected>Seleccionar..</option>
-        <option value="name">Nombre</option>
+    <form className="form">
+    <div className="form-row">
+    <div className="col-6">
+    <input className="form-control  mb-2 mr-sm-2" type="text" placeholder="Search" aria-label="Search"></input>
+    </div>
+    <div className="col-3">
+    <select className="form-control mb-2 mr-sm-2" defaultValue="name">
+        <option  selected value="name">Nombre</option>
         <option value="description">Descripcion</option>
 
     </select>
-    <button className="btn btn-info">Filtrar</button>
-   
     </div>
+    
+    
+    </div>
+    
+    
+    </form>
+   
+    
 
 
 
@@ -48,8 +57,8 @@ const ProductList = ()=>{
 <br></br>
         {<div className="row">
            {products.map((product,i)=>{
-                  
-               return <Product></Product>
+                 
+               return <Product key={i}></Product>
            })}
 
            </div>

@@ -1,9 +1,12 @@
 
 import ShoppingListItem from "./ShoppingListItem";
-const ShoppingList = ()=>{
+import NavBar from "../NavBar/NavBar";
+const ShoppingList = ({onSignOut, fullName})=>{
 
 
     return (
+      <div>
+      <NavBar onSignOut={onSignOut} fullName={fullName} selectedTab={"ShoppingList"}></NavBar>
       <div className="text-center container py-5">
 
 <h4 className="mt-4 mb-5"><strong>Lista de compra</strong></h4>
@@ -27,6 +30,7 @@ const ShoppingList = ()=>{
   </div>
 </section>
      </div>  
+     </div>
 
     );
 }

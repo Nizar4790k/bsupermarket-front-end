@@ -19,7 +19,7 @@ const Register = () => {
             return;
         }
         
-        console.log(process.env.REACT_APP_PROXY);
+       
 
         fetch(process.env.REACT_APP_PROXY+'/register', {
             method: 'post',

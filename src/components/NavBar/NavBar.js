@@ -1,5 +1,5 @@
 import { Link, useHistory} from "react-router-dom";
-const NavBar = ({username,onSignOut}) => {
+const NavBar = ({fullName,onSignOut,selectedTab}) => {
 
   const history = useHistory();
     
@@ -19,20 +19,28 @@ const NavBar = ({username,onSignOut}) => {
 
         <ul className="navbar-nav mr-auto">
         
-        <li className="nav-item active"><Link to="/ProductList" className="nav-link">Productos</Link></li>
+        {
+          selectedTab==="ProductList" ?  
+          <li className="nav-item active"><Link to="/ProductList" className="nav-link">Productos</Link></li>
+          :<li className="nav-item"><Link to="/ProductList" className="nav-link">Productos</Link></li>
+        }
 
-        <li><Link to="/ShopingList" className="nav-link">Listas de Compras</Link></li>
-
+        {
+          selectedTab==="ShoppingList" ?  
+          <li><Link to="/ShopingList" className="nav-link active">Listas de Compras</Link></li>
+          : <li><Link to="/ShopingList" className="nav-link">Listas de Compras</Link></li>
+        }
+        
 
 
         </ul>
 
         <ul className="navbar-nav">
-        <li className="nav-item"><a class="nav-link" href="#">{username}</a></li>
+        <li className="nav-item"><a className="nav-link" href="#">{fullName}</a></li>
         
         <li className="nav-item"> <button type="button" id="signout" className="btn btn-danger" onClick={()=>{
             
-            history.push("/")
+            history.push("/Login")
             onSignOut();
         
         }}>Sign out</button></li>
