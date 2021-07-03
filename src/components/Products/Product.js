@@ -1,6 +1,11 @@
+import { useState } from "react";
+
 const Product =({product})=>{
     const {img,name,description,hall,price,discount} = product;
-  return (
+
+  
+  
+    return (
         <div className="col-lg-4 col-md-6 mb-4">
         <div className="card">
           <div className="bg-image hover-zoom ripple" data-mdb-ripple-color="light">
@@ -12,9 +17,11 @@ const Product =({product})=>{
               <div className="mask">
                 <div className="d-flex justify-content-start align-items-end h-100">
                   <h5 className="status">
+                    {/*
                     <span className="badge bg-primary ms-2">New</span>
-                    <span className="badge bg-success ms-2">Eco</span>
-                    <span className="badge bg-danger ms-2">-{discount*100}%</span>
+                    <span className="badge bg-success ms-2">Eco</span> */}
+                    {discount>0 ? <span className="badge bg-danger ms-2">-{discount*100}%</span>:<span></span>}
+                    
                   </h5>
                 </div>
               </div>
@@ -36,8 +43,11 @@ const Product =({product})=>{
                 <strong>Pasillo</strong><b className="ml-1 text-danger">{hall}</b>
               </h6>
 
+                  
+                
             <h6 className="mb-3">
-              <s>${price.toFixed(2)}</s><strong className="ml-3 text-danger">${(price*(1-discount)).toFixed(2)}</strong>
+              {discount>0 ?<s>${price.toFixed(2)}</s>:false}
+              <strong className="ml-3 text-danger">${(price*(1-discount)).toFixed(2)}</strong>
             </h6>
            
 
