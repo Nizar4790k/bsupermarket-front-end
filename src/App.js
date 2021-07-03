@@ -6,28 +6,33 @@ import Login from './components/Login/Login';
 import Register from './components/Register/Register';
 import ProductList from './components/Products/ProductList';
 import ShoppingList from './components/ShopingList/ShoppingList';
+import { useState } from 'react';
 
 
-const user = {username:"Nizar4790k"}
 
-function onSignOut(){
-
-}
-
-function onLoadFullName(){
-  
-}
 
 
 function App() {
+
+const  [fullName,setFullName] = useState("");
+
+
+
+const onSignOut= ()=>{
+  setFullName("");
+}
+
+const onLoadFullName = (fullName)=>{
+  setFullName(fullName);
+}
   return (
     <Router>
    
       <Switch>
       <Route path="/Login" component={()=><Login onLoadFullName={onLoadFullName}/>}></Route>
         <Route path='/Register' exact component={Register}></Route>
-        <Route path ='/ProductList' component={()=><ProductList onSignOut={onSignOut} fullName={user.username}></ProductList>}></Route>
-        <Route path ='/ShopingList'  component={()=><ShoppingList onSignOut={onSignOut} fullName={user.username}></ShoppingList>}></Route>
+        <Route path ='/ProductList' component={()=><ProductList onSignOut={onSignOut} fullName={fullName}></ProductList>}></Route>
+        <Route path ='/ShopingList'  component={()=><ShoppingList onSignOut={onSignOut} fullName={fullName}></ShoppingList>}></Route>
       </Switch>
     </Router>
     

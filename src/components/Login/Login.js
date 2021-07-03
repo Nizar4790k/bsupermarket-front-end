@@ -31,14 +31,15 @@ const history = useHistory();
     })
         .then(response =>response.json())
         .then(result=>{
-            
-            switch(result){
+            console.log(result);
+
+            switch(result.status){
                 case "ACCESS_DENIED":
                     alert("The credentials are wrong");
                     break;
                 case "ACCESS_GRANTED":
                     history.push("/ProductList");
-                    onLoadFullName(email);
+                    onLoadFullName(result.fullName);
                     break;
                  default:
                      alert("ERROR IN THE SERVER");
