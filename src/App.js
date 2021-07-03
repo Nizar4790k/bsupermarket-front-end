@@ -24,10 +24,9 @@ function App() {
         <Route path='/Register' exact component={Register}></Route>
         <Route path ='/ProductList' exact component={ProductList}></Route>
         <Route path ='/ShopingList' exact component={ShoppingList}></Route>
-        
- 
       </Switch>
     </Router>
+    
   );
 }
 
