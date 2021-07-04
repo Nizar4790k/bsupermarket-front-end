@@ -1,21 +1,16 @@
 import { useState } from "react";
 
-const Product =({product,userId})=>{
+const Product =({product,getUserId})=>{
+    
     const {img,name,description,hall,price,discount} = product;
 
     const [isInCar,setInCar] = useState(false);
 
-  
-    const onAddingToCart = ()=>{
-      
-      if(!isInCar){
-        addToCart(userId,product);
-        setInCar(true)
-      }
-    }
+    
+    
 
     const addToCart = async (userId,product)=>{
-
+     
       const response =  await fetch(process.env.REACT_APP_PROXY+'/cart', {
         method: 'post',
         headers: { 'Content-Type': 'application/json' },
@@ -23,22 +18,38 @@ const Product =({product,userId})=>{
             product:product,
             userId:userId
         })
+
+       
+    })
+    setInCar(true)
+  }
+   
+
+    const removeFromCart = async (userId,product)=>{
+
+      console.log(userId);
+      console.log(product);
+
+      const response =  await fetch(process.env.REACT_APP_PROXY+'/cart', {
+        method: 'put',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            product:product,
+            userId:userId
+        })
     })
 
-    const result = await response.json();
 
-    console.log(result);
+    setInCar(false);
 
-    return result;
+    
+   
+  }
+    
       
-    }
+  
 
-    const onRemovingFromCart = (event)=>{
-      if(isInCar){
-        setInCar(false);
-      }
-    }
-
+   
   
     return (
         <div className="col-lg-4 col-md-6 mb-4">
@@ -87,8 +98,8 @@ const Product =({product,userId})=>{
            
            {
              isInCar ? 
-             <button className="btn btn-danger" onClick={onRemovingFromCart}>Remove from List</button>:
-             <button className="btn btn-success" onClick={onAddingToCart}>Add to the List</button>
+             <button className="btn btn-danger" onClick={()=>removeFromCart(getUserId(),product)}>Remove from List</button>:
+             <button className="btn btn-success" onClick={()=>{addToCart(getUserId(),product)}}>Add to the List</button>
            }
 
            

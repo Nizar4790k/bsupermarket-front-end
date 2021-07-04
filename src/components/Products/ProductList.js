@@ -3,13 +3,15 @@ import Product from './Product';
 import NavBar from '../NavBar/NavBar';
 import { useEffect, useState } from 'react';
 const ProductList = ({ onSignOut, user}) => {
-
+    
     const [products, setProducts] = useState([]);
     const [inputText,setInputText]= useState("");
     const [criteria,setCriteria] = useState("name");
 
    
-
+    const getUserId=()=>{
+       return user.id;
+    }
 
     const onInputChange = (event) => {
         setInputText(event.target.value)
@@ -81,8 +83,8 @@ const ProductList = ({ onSignOut, user}) => {
                     <br></br>
                     {<div className="row">
                         {products.map((product, i) => {
-
-                            return <Product product={product} key={i} userId={user.id}></Product>
+                            
+                            return <Product product={product} key={i} getUserId={getUserId} userId={user.id}></Product>
                         })}
 
                     </div>
