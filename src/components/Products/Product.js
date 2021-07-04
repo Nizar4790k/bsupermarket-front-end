@@ -1,9 +1,44 @@
 import { useState } from "react";
 
-const Product =({product})=>{
+const Product =({product,userId})=>{
     const {img,name,description,hall,price,discount} = product;
 
+    const [isInCar,setInCar] = useState(false);
+
   
+    const onAddingToCart = ()=>{
+      
+      if(!isInCar){
+        addToCart(userId,product);
+        setInCar(true)
+      }
+    }
+
+    const addToCart = async (userId,product)=>{
+
+      const response =  await fetch(process.env.REACT_APP_PROXY+'/cart', {
+        method: 'post',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            product:product,
+            userId:userId
+        })
+    })
+
+    const result = await response.json();
+
+    console.log(result);
+
+    return result;
+      
+    }
+
+    const onRemovingFromCart = (event)=>{
+      if(isInCar){
+        setInCar(false);
+      }
+    }
+
   
     return (
         <div className="col-lg-4 col-md-6 mb-4">
@@ -49,6 +84,13 @@ const Product =({product})=>{
               {discount>0 ?<s>${price.toFixed(2)}</s>:false}
               <strong className="ml-3 text-danger">${(price*(1-discount)).toFixed(2)}</strong>
             </h6>
+           
+           {
+             isInCar ? 
+             <button className="btn btn-danger" onClick={onRemovingFromCart}>Remove from List</button>:
+             <button className="btn btn-success" onClick={onAddingToCart}>Add to the List</button>
+           }
+
            
 
           </div>

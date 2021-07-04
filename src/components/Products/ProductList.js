@@ -2,7 +2,7 @@ import './ProductList.css'
 import Product from './Product';
 import NavBar from '../NavBar/NavBar';
 import { useEffect, useState } from 'react';
-const ProductList = ({ onSignOut, fullName }) => {
+const ProductList = ({ onSignOut, user}) => {
 
     const [products, setProducts] = useState([]);
     const [inputText,setInputText]= useState("");
@@ -43,7 +43,7 @@ const ProductList = ({ onSignOut, fullName }) => {
     return (
 
         <div>
-            <NavBar onSignOut={onSignOut} fullName={fullName} selectedTab={"ProductList"}></NavBar>
+            <NavBar onSignOut={onSignOut} fullName={user.fullName} selectedTab={"ProductList"}></NavBar>
 
             <section style={{ backgroundColor: "#eee" }}>
 
@@ -82,7 +82,7 @@ const ProductList = ({ onSignOut, fullName }) => {
                     {<div className="row">
                         {products.map((product, i) => {
 
-                            return <Product product={product} key={i}></Product>
+                            return <Product product={product} key={i} userId={user.id}></Product>
                         })}
 
                     </div>

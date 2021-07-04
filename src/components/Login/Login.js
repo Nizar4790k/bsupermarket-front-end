@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import "./Login.css";
 
 
-const Login = ({onLoadFullName}) => {
+const Login = ({onLoadUser}) => {
 
     const[email,setEmail]=useState("");
     const[password,setPassword] = useState("");
@@ -31,7 +31,7 @@ const history = useHistory();
     })
         .then(response =>response.json())
         .then(result=>{
-            console.log(result);
+            
 
             switch(result.status){
                 case "ACCESS_DENIED":
@@ -39,7 +39,8 @@ const history = useHistory();
                     break;
                 case "ACCESS_GRANTED":
                     history.push("/ProductList");
-                    onLoadFullName(result.fullName);
+                    
+                    onLoadUser(result.user);
                     break;
                  default:
                      alert("ERROR IN THE SERVER");
