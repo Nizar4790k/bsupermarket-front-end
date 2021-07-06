@@ -25,6 +25,7 @@ const onSignOut= ()=>{
 const onLoadUser = (user)=>{
   
   setUser(user);
+  
 }
   return (
     <Router>
@@ -33,7 +34,7 @@ const onLoadUser = (user)=>{
       <Route path="/Login" component={()=><Login onLoadUser={onLoadUser}/>}></Route>
         <Route path='/Register' exact component={Register}></Route>
         <Route path ='/ProductList' component={()=><ProductList onSignOut={onSignOut} user={user}></ProductList>}></Route>
-        <Route path ='/ShopingList'  component={()=><ShoppingList onSignOut={onSignOut} user={user}></ShoppingList>}></Route>
+        <Route path ='/ShopingList'  component={()=><ShoppingList onSignOut={onSignOut} onLoadUser={onLoadUser} user={user}></ShoppingList>}></Route>
       </Switch>
     </Router>
     

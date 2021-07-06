@@ -2,17 +2,17 @@
 import ShoppingListItem from "./ShoppingListItem";
 import NavBar from "../NavBar/NavBar";
 import { useEffect, useState } from "react";
-const ShoppingList = ({ onSignOut, user }) => {
+const ShoppingList = ({ onSignOut, user,onLoadUser }) => {
 
   const [products, setProducts] = useState([])
-
+  
 
   const fetchProductsCart = async () => {
     const response = await fetch(process.env.REACT_APP_PROXY + `/cart/${user.id}`)
     const result = await response.json();
+    
     setProducts(result.products);
-
-
+    
 
   }
 
@@ -26,9 +26,10 @@ const ShoppingList = ({ onSignOut, user }) => {
       })
     })
 
-   fetchProductsCart();
+   await fetchProductsCart();
 
   }
+  
 
   useEffect(() => {
 
@@ -46,17 +47,7 @@ const ShoppingList = ({ onSignOut, user }) => {
 
         <h4 className="mt-4 mb-5"><strong>Lista de compra</strong></h4>
 
-        <form className="form">
-          <div className="form-row">
-
-            <div className="col-6">
-              <button className="btn btn-danger" onClick={deleteAllProducts}>Vaciar lista de compras</button>
-            </div>
-
-          </div>
-
-
-        </form>
+        <button className="btn btn-danger" onClick={deleteAllProducts}>Vaciar lista de compras</button>
 
 
 

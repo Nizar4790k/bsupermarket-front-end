@@ -4,9 +4,7 @@ const ShoppingListItem = ({ product,userId,fetchProductsCart}) => {
 
   const { img, name, description, hall, price, discount, bougth } = product;
   
-  
 
- 
 
  
   const setBougth = async (event)=>{
@@ -26,19 +24,20 @@ const ShoppingListItem = ({ product,userId,fetchProductsCart}) => {
     
   }
 
-  const removeFromCart = async (userId, product) => {
+  const removeFromCart =  async (userId, product) => {
 
     
 
-    const response = await fetch(process.env.REACT_APP_PROXY + '/cart/product', {
+    const response =  await fetch(process.env.REACT_APP_PROXY + '/cart/product', {
       method: 'delete',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         product: product,
         userId: userId
       })
-    })
-    await fetchProductsCart();
+    });
+    
+    fetchProductsCart();
 
     
 
@@ -92,9 +91,9 @@ const ShoppingListItem = ({ product,userId,fetchProductsCart}) => {
                   <button className="btn btn-outline-danger btn-sm mb-4" type="button" onClick={()=>removeFromCart(userId,product)}>Borrar de la lista</button>
                   <div className="form-check">
                   
-                    {
-                      bougth ?  <input class="form-check-input" id="bougth" type="checkbox" checked onChange={setBougth}  id="flexCheckDefault"></input> : <input class="form-check-input" id="bougth" type="checkbox"  onChange={setBougth}  id="flexCheckDefault"></input>
-                    }
+                    
+                      <input class="form-check-input" id="bougth" type="checkbox" checked={bougth} onClick={setBougth}  id="flexCheckDefault"></input>
+                    
 
                      
                     
