@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import "./Login.css";
 
@@ -9,7 +9,18 @@ const Login = ({onLoadUser}) => {
     const[password,setPassword] = useState("");
      
 
+    
+
 const history = useHistory();
+
+useEffect(()=>{
+     const user = JSON.parse(localStorage.getItem('user'));
+     
+     if(user){
+         history.push('/ProductList')
+     }
+     
+},[])
 
    const authenticate = () =>{
 
