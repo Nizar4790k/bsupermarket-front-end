@@ -13,13 +13,28 @@ const Register = () => {
 
     const sendForm =  () => {
 
+    
         
         if(!email|| !password || !fullName){
             alert("The fields can't be empty");
             return;
         }
+
+        const validateEmail = (email)=>{
+
+            const regex = new RegExp("[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+");
+            return regex.test(email)
+
+        }
+
+        if(!validateEmail(email)){
+            alert("Email not valid!");
+            return;
+        }
         
+     
        
+
 
         fetch(process.env.REACT_APP_PROXY+'/register', {
             method: 'post',
