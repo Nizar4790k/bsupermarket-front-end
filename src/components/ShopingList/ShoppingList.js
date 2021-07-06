@@ -16,7 +16,19 @@ const ShoppingList = ({ onSignOut, user }) => {
 
   }
 
+  const deleteAllProducts = async (event)=>{
 
+    const response = await fetch(process.env.REACT_APP_PROXY+ `/cart`, {
+      method: 'delete',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        userId: user.id,
+      })
+    })
+
+   fetchProductsCart();
+
+  }
 
   useEffect(() => {
 
@@ -38,7 +50,7 @@ const ShoppingList = ({ onSignOut, user }) => {
           <div className="form-row">
 
             <div className="col-6">
-              <button className="btn btn-danger">Vaciar lista de compras</button>
+              <button className="btn btn-danger" onClick={deleteAllProducts}>Vaciar lista de compras</button>
             </div>
 
           </div>
