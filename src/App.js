@@ -1,12 +1,11 @@
 
 import './App.css';
 import { BrowserRouter as Router, Route, Switch} from "react-router-dom";
-
 import Login from './components/Login/Login';
 import Register from './components/Register/Register';
 import ProductList from './components/Products/ProductList';
 import ShoppingList from './components/ShopingList/ShoppingList';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 
 
@@ -17,6 +16,11 @@ function App() {
 const  [user,setUser] = useState({});
 
 
+useEffect(()=>{
+ 
+  setUser(JSON.parse(localStorage.getItem('user')))
+},[])
+
 
 const onSignOut= ()=>{
   setUser({});
@@ -24,7 +28,7 @@ const onSignOut= ()=>{
 }
 
 const onLoadUser = (user)=>{
-  localStorage.setItem('user',user);
+  localStorage.setItem('user',JSON.stringify(user));
   setUser(user);
   
 }

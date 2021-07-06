@@ -93,14 +93,14 @@ const ShoppingListItem = ({ product,userId,fetchProductsCart}) => {
                   <div className="form-check">
                   
                     
-                      <input class="form-check-input"  type="checkbox" checked={bougth} onClick={setBougth}  id="flexCheckDefault"></input>
+                      <input className="form-check-input"  type="checkbox" checked={bougth} onChange={setBougth}  id="flexCheckDefault"></input>
                     
 
                      
                     
                   
                 
-                    <label class="form-check-label" for="flexCheckDefault">
+                    <label className="form-check-label" htmlFor="flexCheckDefault">
                       Marcar como comprado
                     </label>
 
