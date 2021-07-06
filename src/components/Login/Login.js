@@ -49,9 +49,11 @@ useEffect(()=>{
                     alert("The credentials are wrong");
                     break;
                 case "ACCESS_GRANTED":
-                    history.push("/ProductList");
                     
+                    localStorage.setItem('user',JSON.stringify(result.user));
                     onLoadUser(result.user);
+                history.push("/ProductList");
+                    
                     break;
                  default:
                      alert("ERROR IN THE SERVER");
