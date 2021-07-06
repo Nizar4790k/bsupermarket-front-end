@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const Product = ({ product, getUserId }) => {
+const Product = ({ product, userId}) => {
 
   const { img, name, description, hall, price, discount } = product;
 
@@ -15,7 +15,7 @@ const Product = ({ product, getUserId }) => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           product: product,
-          userId: getUserId()
+          userId: userId
         })
 
 
@@ -34,7 +34,7 @@ const Product = ({ product, getUserId }) => {
 
   const addToCart = async (userId, product) => {
 
-    const response = await fetch(process.env.REACT_APP_PROXY + '/cart', {
+     await fetch(process.env.REACT_APP_PROXY + '/cart', {
       method: 'post',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -53,7 +53,7 @@ const Product = ({ product, getUserId }) => {
     console.log(userId);
     console.log(product);
 
-    const response = await fetch(process.env.REACT_APP_PROXY + '/cart/product', {
+     await fetch(process.env.REACT_APP_PROXY + '/cart/product', {
       method: 'delete',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -81,6 +81,7 @@ const Product = ({ product, getUserId }) => {
           <img
             src={img}
             className="w-100"
+            alt="products"
           />
           <a href="#!">
             <div className="mask">
@@ -121,8 +122,8 @@ const Product = ({ product, getUserId }) => {
 
           {
             isInCar ?
-              <button className="btn btn-danger" onClick={() => removeFromCart(getUserId(), product)}>Remove from List</button> :
-              <button className="btn btn-success" onClick={() => { addToCart(getUserId(), product) }}>Add to the List</button>
+              <button className="btn btn-danger" onClick={() => removeFromCart(userId, product)}>Remove from List</button> :
+              <button className="btn btn-success" onClick={() => { addToCart(userId, product) }}>Add to the List</button>
           }
 
 

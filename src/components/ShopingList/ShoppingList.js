@@ -2,7 +2,7 @@
 import ShoppingListItem from "./ShoppingListItem";
 import NavBar from "../NavBar/NavBar";
 import { useEffect, useState } from "react";
-const ShoppingList = ({ onSignOut, user,onLoadUser }) => {
+const ShoppingList = ({ onSignOut, user }) => {
 
   const [products, setProducts] = useState([])
   
@@ -18,7 +18,7 @@ const ShoppingList = ({ onSignOut, user,onLoadUser }) => {
 
   const deleteAllProducts = async (event)=>{
 
-    const response = await fetch(process.env.REACT_APP_PROXY+ `/cart`, {
+     await fetch(process.env.REACT_APP_PROXY+ `/cart`, {
       method: 'delete',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({

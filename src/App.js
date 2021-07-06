@@ -20,10 +20,11 @@ const  [user,setUser] = useState({});
 
 const onSignOut= ()=>{
   setUser({});
+  localStorage.clear();
 }
 
 const onLoadUser = (user)=>{
-  
+  localStorage.setItem('user',user);
   setUser(user);
   
 }

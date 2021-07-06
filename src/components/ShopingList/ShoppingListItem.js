@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+
 
 const ShoppingListItem = ({ product,userId,fetchProductsCart}) => {
 
@@ -9,7 +9,7 @@ const ShoppingListItem = ({ product,userId,fetchProductsCart}) => {
  
   const setBougth = async (event)=>{
     
-    const response = await fetch(process.env.REACT_APP_PROXY+ `/cart/product`, {
+    await fetch(process.env.REACT_APP_PROXY+ `/cart/product`, {
       method: 'put',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -28,7 +28,7 @@ const ShoppingListItem = ({ product,userId,fetchProductsCart}) => {
 
     
 
-    const response =  await fetch(process.env.REACT_APP_PROXY + '/cart/product', {
+     await fetch(process.env.REACT_APP_PROXY + '/cart/product', {
       method: 'delete',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -55,6 +55,7 @@ const ShoppingListItem = ({ product,userId,fetchProductsCart}) => {
                 <div className="bg-image hover-zoom ripple rounded ripple-surface">
                   <img
                     src={img}
+                    alt="product"
                     className="w-100"
                   />
                   <a href="#!">
@@ -92,7 +93,7 @@ const ShoppingListItem = ({ product,userId,fetchProductsCart}) => {
                   <div className="form-check">
                   
                     
-                      <input class="form-check-input" id="bougth" type="checkbox" checked={bougth} onClick={setBougth}  id="flexCheckDefault"></input>
+                      <input class="form-check-input"  type="checkbox" checked={bougth} onClick={setBougth}  id="flexCheckDefault"></input>
                     
 
                      

@@ -9,10 +9,7 @@ const ProductList = ({ onSignOut, user}) => {
     const [criteria,setCriteria] = useState("name");
 
    
-    const getUserId=()=>{
-       return user.id;
-    }
-
+   
     const onInputChange = (event) => {
         setInputText(event.target.value)
         fetchProducts(event.target.value,criteria);
@@ -86,7 +83,7 @@ const ProductList = ({ onSignOut, user}) => {
                     {<div className="row">
                         {products.map((product, i) => {
                             
-                            return <Product product={product} key={i} getUserId={getUserId} userId={user.id}></Product>
+                            return <Product product={product} key={i}  userId={user.id}></Product>
                         })}
 
                     </div>

@@ -9,7 +9,7 @@ const NavBar = ({fullName,onSignOut,selectedTab}) => {
         <div className="container-fluid">
         <nav className="navbar navbar-expand-lg navbar-light bg-light fixed-top">
         
-        <Link to="/Home" className="navbar-brand">Supermercados Hermanos</Link>
+        <Link to="/ProductList" className="navbar-brand">Supermercados Hermanos</Link>
        
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
         <span className="navbar-toggler-icon"></span>
@@ -36,7 +36,7 @@ const NavBar = ({fullName,onSignOut,selectedTab}) => {
         </ul>
 
         <ul className="navbar-nav">
-        <li className="nav-item"><a className="nav-link" href="#">{fullName}</a></li>
+        <li className="nav-item"><p className="nav-link" href="#">{fullName}</p></li>
         
         <li className="nav-item"> <button type="button" id="signout" className="btn btn-danger" onClick={()=>{
             
