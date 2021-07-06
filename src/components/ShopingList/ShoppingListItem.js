@@ -1,15 +1,35 @@
+import { useEffect, useState } from "react";
+
 const ShoppingListItem = ({ product,userId,fetchProductsCart}) => {
 
-  const { img, name, description, hall, price, discount } = product;
+  const { img, name, description, hall, price, discount, bougth } = product;
+  
+  
 
+ 
+  const setBougth = async (event)=>{
+    
+    const response = await fetch(process.env.REACT_APP_PROXY+ `/cart/product`, {
+      method: 'put',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        _id: product._id,
+        userId: userId,
+        bougth:event.target.checked
+      })
+    })
+
+   fetchProductsCart();
+    
+    
+  }
 
   const removeFromCart = async (userId, product) => {
 
-    console.log(userId);
-    console.log(product);
+    
 
-    const response = await fetch(process.env.REACT_APP_PROXY + '/cart', {
-      method: 'put',
+    const response = await fetch(process.env.REACT_APP_PROXY + '/cart/product', {
+      method: 'delete',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         product: product,
@@ -62,14 +82,22 @@ const ShoppingListItem = ({ product,userId,fetchProductsCart}) => {
               </div>
               <div className="col-md-6 col-lg-3 col-xl-3 border-sm-start-none border-start">
                 <div className="d-flex flex-row align-items-center mb-1">
-                  <h4 className="mb-1 me-1">${price * (1 - discount)}</h4>
-                  <span className="text-danger ml-3"><s>${price}</s></span>
+                  <h4 className="mb-1 me-1">${(price * (1 - discount)).toFixed(2)}</h4>
+                  <span className="text-danger ml-3"><s>${price.toFixed(2)}</s></span>
                 </div>
 
                 <div className="d-flex flex-column mt-4">
                   <button className="btn btn-outline-danger btn-sm mb-4" type="button" onClick={()=>removeFromCart(userId,product)}>Borrar de la lista</button>
                   <div className="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></input>
+                  
+                    {
+                      bougth ?  <input class="form-check-input" id="bougth" type="checkbox" checked onChange={setBougth}  id="flexCheckDefault"></input> : <input class="form-check-input" id="bougth" type="checkbox"  onChange={setBougth}  id="flexCheckDefault"></input>
+                    }
+
+                     
+                    
+                  
+                
                     <label class="form-check-label" for="flexCheckDefault">
                       Marcar como comprado
                     </label>

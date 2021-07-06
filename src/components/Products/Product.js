@@ -53,8 +53,8 @@ const Product = ({ product, getUserId }) => {
     console.log(userId);
     console.log(product);
 
-    const response = await fetch(process.env.REACT_APP_PROXY + '/cart', {
-      method: 'put',
+    const response = await fetch(process.env.REACT_APP_PROXY + '/cart/product', {
+      method: 'delete',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         product: product,

@@ -33,6 +33,10 @@ const ProductList = ({ onSignOut, user}) => {
        
     }
 
+    const setBougth = async (event)=>{
+        //const response = await fetch(process.env.REACT_APP_PROXY+`/cart/id/${}`)
+    }
+
     
 
     useEffect(() => {

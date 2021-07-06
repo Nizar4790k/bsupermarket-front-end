@@ -16,6 +16,8 @@ const ShoppingList = ({ onSignOut, user }) => {
 
   }
 
+
+
   useEffect(() => {
 
     
@@ -51,7 +53,7 @@ const ShoppingList = ({ onSignOut, user }) => {
 
             {
               products.map((product, i) => {
-                console.log(product);
+                
                 return <ShoppingListItem product={product} userId={user.id} key={i} fetchProductsCart={fetchProductsCart}></ShoppingListItem>
               })
             }
